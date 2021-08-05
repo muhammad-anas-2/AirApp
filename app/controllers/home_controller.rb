@@ -19,10 +19,24 @@ class HomeController < ApplicationController
 
     @output = @response.read_body
     @result = JSON.parse(@output)
+    @final = @result['data'][0]['aqi']
+
+    if @final >= 50
+      @api_color = 'green'
+    elsif  @final >= 51 && @final <= 100
+      @api_color = 'yellow'
+    elsif  @final >= 101 && @final <= 150
+      @api_color = 'orange'
+    elsif  @final >= 151 && @final <= 200
+      @api_color = 'red'
+    elsif  @final >= 201 && @final <= 250
+      @api_color = 'purple'
+    elsif  @final >= 251 && @final <= 500
+      @api_color = 'maroon'
+    end
 
 
 
 
   end
-
 end

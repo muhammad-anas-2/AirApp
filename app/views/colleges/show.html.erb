@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>C name:</strong>
+  <%= @college.c_name %>
+
+</p>
+
+<p>
+  <strong>C phone:</strong>
+  <%= @college.c_phone %>
+</p>
+<p>
+  <%= link_to 'Student College Address',college_addresses_path(@college) %>
+</p>
+
+<%= link_to 'Edit', edit_college_path(@college) %> |
+<%= link_to 'Back', colleges_path %>

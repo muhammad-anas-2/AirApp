@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>H name:</strong>
+  <%= @hostel.h_name %>
+</p>
+
+<p>
+  <strong>H phone:</strong>
+  <%= @hostel.h_phone %>
+</p>
+
+<p>
+  <%= link_to 'Student Hostel Address',hostel_addresses_path(@hostel) %>
+</p>
+
+
+<%= link_to 'Edit', edit_hostel_path(@hostel) %> |
+<%= link_to 'Back', hostels_path %>

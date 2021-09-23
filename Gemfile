@@ -14,6 +14,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootstrap', '~> 4.0'
 gem 'jquery-rails'
 gem 'json', '~> 2.5', '>= 2.5.1'
+gem 'hirb', '~> 0.7.3'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 

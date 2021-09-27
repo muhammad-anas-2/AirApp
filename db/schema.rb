@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_111749) do
+ActiveRecord::Schema.define(version: 2021_09_24_091505) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2021_09_23_111749) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["notable_type", "notable_id"], name: "index_addresses_on_notable"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.bigint "college_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["college_id"], name: "index_admins_on_college_id"
   end
 
   create_table "colleges", force: :cascade do |t|
@@ -62,6 +71,12 @@ ActiveRecord::Schema.define(version: 2021_09_23_111749) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "student_courses", force: :cascade do |t|
     t.integer "student_id"
     t.integer "course_id"
@@ -76,6 +91,23 @@ ActiveRecord::Schema.define(version: 2021_09_23_111749) do
     t.integer "standard"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "name"
+    t.bigint "project_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_tasks_on_project_id"
+  end
+
+  create_table "teachers", force: :cascade do |t|
+    t.string "name"
+    t.string "subject"
+    t.bigint "college_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["college_id"], name: "index_teachers_on_college_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,6 +128,9 @@ ActiveRecord::Schema.define(version: 2021_09_23_111749) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "admins", "colleges"
   add_foreign_key "photos", "posts"
   add_foreign_key "posts", "users"
+  add_foreign_key "tasks", "projects"
+  add_foreign_key "teachers", "colleges"
 end
